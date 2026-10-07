@@ -1,0 +1,1750 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bruno Carvalho // Director of Marketing</title>
+
+<meta name="description" content="Bruno Carvalho — Diretor de Marketing, Designer Gráfico e Programador.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<style>
+
+/* =========================================================
+   CORE
+========================================================= */
+
+:root {
+    --black: #050505;
+    --black-2: #080808;
+    --white: #f2f2f2;
+    --gray: #858585;
+    --dark-gray: #303030;
+    --line: rgba(255,255,255,.10);
+    --line-strong: rgba(255,255,255,.18);
+
+    --mono: "DM Mono", monospace;
+    --sans: "Inter", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    z-index: 999;
+
+    opacity: .035;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+::selection {
+    background: white;
+    color: black;
+}
+
+
+/* =========================================================
+   BOOT SCREEN
+========================================================= */
+
+.boot {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+
+    background: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+.boot.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.boot-inner {
+    width: min(500px, 82%);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #aaa;
+}
+
+.boot-logo {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 35px;
+    letter-spacing: -.04em;
+}
+
+.boot-line {
+    margin: 8px 0;
+}
+
+.boot-line span {
+    color: #555;
+}
+
+.boot-progress {
+    margin-top: 25px;
+    width: 100%;
+    height: 2px;
+    background: #1b1b1b;
+    overflow: hidden;
+}
+
+.boot-progress::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    background: white;
+
+    transform: translateX(-100%);
+    animation: bootProgress 1.8s ease forwards;
+}
+
+@keyframes bootProgress {
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: fixed;
+    z-index: 100;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 24px 5vw;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid transparent;
+
+    transition: .4s ease;
+}
+
+header.scrolled {
+    background: rgba(5,5,5,.86);
+    backdrop-filter: blur(12px);
+    border-color: var(--line);
+}
+
+.logo {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+}
+
+.logo span {
+    color: #555;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+
+    box-shadow: 0 0 12px rgba(255,255,255,.7);
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: .25;
+    }
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding: 130px 5vw 70px;
+
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.97) 0%,
+            rgba(0,0,0,.72) 45%,
+            rgba(0,0,0,.80) 100%
+        ),
+        url("bruno.jpg") center / cover no-repeat;
+
+    filter: grayscale(100%);
+
+    opacity: .62;
+
+    transform: scale(1.04);
+
+    animation: heroImage 2s ease forwards;
+}
+
+@keyframes heroImage {
+    from {
+        transform: scale(1.10);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1.04);
+        opacity: .62;
+    }
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent 49.8%,
+            rgba(255,255,255,.04) 50%,
+            transparent 50.2%
+        );
+
+    background-size: 100% 100px;
+
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.hero-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+
+    color: #666;
+
+    display: flex;
+    gap: 30px;
+
+    margin-bottom: 35px;
+
+    text-transform: uppercase;
+}
+
+.hero-meta span {
+    color: #aaa;
+}
+
+.hero-title {
+    font-size: clamp(55px, 12vw, 170px);
+
+    line-height: .82;
+
+    letter-spacing: -.085em;
+
+    font-weight: 700;
+
+    max-width: 1150px;
+
+    text-transform: uppercase;
+}
+
+.hero-title .outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,.55);
+}
+
+.hero-role {
+    margin-top: 45px;
+
+    font-family: var(--mono);
+
+    font-size: clamp(13px, 1.5vw, 18px);
+
+    color: #aaa;
+
+    letter-spacing: .04em;
+}
+
+.hero-role::before {
+    content: "> ";
+
+    color: white;
+}
+
+.hero-social {
+    display: flex;
+    gap: 8px;
+
+    margin-top: 35px;
+}
+
+.social {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--line-strong);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+
+    transition: .3s ease;
+}
+
+.social:hover {
+    background: white;
+    color: black;
+    border-color: white;
+}
+
+
+/* =========================================================
+   DECORATIVE DATA
+========================================================= */
+
+.hero-data {
+    position: absolute;
+
+    right: 5vw;
+    bottom: 70px;
+
+    font-family: var(--mono);
+    font-size: 9px;
+
+    color: #444;
+
+    line-height: 1.9;
+
+    text-align: right;
+}
+
+.hero-data strong {
+    color: #777;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   GENERAL SECTION
+========================================================= */
+
+section {
+    padding: 140px 5vw;
+}
+
+.container {
+    width: min(1400px, 100%);
+    margin: auto;
+}
+
+.section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    padding-bottom: 30px;
+
+    border-bottom: 1px solid var(--line);
+
+    margin-bottom: 45px;
+}
+
+.section-id {
+    font-family: var(--mono);
+    font-size: 10px;
+
+    color: #555;
+
+    letter-spacing: .15em;
+}
+
+.section-title {
+    margin-top: 12px;
+
+    font-size: clamp(40px, 6vw, 82px);
+
+    letter-spacing: -.07em;
+
+    line-height: .9;
+
+    text-transform: uppercase;
+}
+
+.section-description {
+    max-width: 310px;
+
+    color: #666;
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.projects {
+    background: #050505;
+}
+
+.projects-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1px;
+
+    background: var(--line);
+    border: 1px solid var(--line);
+}
+
+.project {
+    min-height: 330px;
+
+    background: #070707;
+
+    padding: 28px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    transition: .45s ease;
+}
+
+.project::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 0;
+    height: 1px;
+
+    background: white;
+
+    transition: .5s ease;
+}
+
+.project:hover::before {
+    width: 100%;
+}
+
+.project:hover {
+    background: #0d0d0d;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-number {
+    font-family: var(--mono);
+    color: #444;
+    font-size: 10px;
+}
+
+.project-category {
+    font-family: var(--mono);
+    color: #555;
+    font-size: 9px;
+
+    text-transform: uppercase;
+}
+
+.project-name {
+    font-size: clamp(28px, 4vw, 48px);
+
+    letter-spacing: -.06em;
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+}
+
+.project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-top: 1px solid var(--line);
+
+    padding-top: 17px;
+}
+
+.project-tech {
+    color: #555;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+}
+
+.deploy {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    transition: .3s ease;
+}
+
+.deploy:hover {
+    gap: 15px;
+}
+
+
+/* =========================================================
+   NUMBERS
+========================================================= */
+
+.numbers {
+    background: #080808;
+
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.numbers-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    border: 1px solid var(--line);
+}
+
+.number-card {
+    min-height: 300px;
+
+    padding: 30px;
+
+    border-right: 1px solid var(--line);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+}
+
+.number-card:last-child {
+    border-right: none;
+}
+
+.number-index {
+    font-family: var(--mono);
+    color: #444;
+    font-size: 9px;
+}
+
+.number-value {
+    font-size: clamp(55px, 7vw, 100px);
+
+    letter-spacing: -.08em;
+
+    line-height: .8;
+}
+
+.number-unit {
+    color: #555;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    margin-top: 15px;
+}
+
+.number-description {
+    color: #777;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    max-width: 180px;
+}
+
+
+/* =========================================================
+   RESUME
+========================================================= */
+
+.resume {
+    margin-top: 50px;
+
+    padding: 25px 0;
+
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resume-label {
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    color: #555;
+}
+
+.resume-label strong {
+    display: block;
+
+    color: white;
+
+    font-family: var(--sans);
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    margin-top: 5px;
+}
+
+.resume-button {
+    padding: 13px 20px;
+
+    border: 1px solid var(--line-strong);
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    transition: .3s ease;
+}
+
+.resume-button:hover {
+    background: white;
+    color: black;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 100px 5vw 30px;
+
+    background: #030303;
+}
+
+.footer-container {
+    width: min(1400px, 100%);
+    margin: auto;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    padding-bottom: 80px;
+}
+
+.footer-name {
+    font-size: clamp(35px, 7vw, 100px);
+
+    letter-spacing: -.08em;
+
+    line-height: .85;
+
+    text-transform: uppercase;
+}
+
+.footer-name span {
+    display: block;
+
+    color: #555;
+
+    font-size: .32em;
+
+    letter-spacing: -.02em;
+
+    margin-top: 25px;
+}
+
+.footer-phrase {
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    color: #666;
+
+    text-align: right;
+}
+
+.footer-phrase strong {
+    display: block;
+
+    color: white;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--line);
+
+    padding-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    color: #444;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero-data {
+        display: none;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .numbers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .number-card {
+        border-bottom: 1px solid var(--line);
+    }
+
+    .number-card:nth-child(2) {
+        border-right: none;
+    }
+
+    .number-card:nth-child(3),
+    .number-card:nth-child(4) {
+        border-bottom: none;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 45px;
+    }
+
+    .footer-phrase {
+        text-align: left;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 20px 6vw;
+    }
+
+    .system-status {
+        display: none;
+    }
+
+    .hero {
+        padding: 120px 6vw 60px;
+    }
+
+    .hero-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .hero-title {
+        font-size: clamp(52px, 17vw, 100px);
+    }
+
+    section {
+        padding: 100px 6vw;
+    }
+
+    .section-top {
+        display: block;
+    }
+
+    .section-description {
+        margin-top: 25px;
+        text-align: left;
+    }
+
+    .projects-grid {
+        gap: 1px;
+    }
+
+    .project {
+        min-height: 280px;
+    }
+
+    .numbers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .number-card {
+        min-height: 240px;
+
+        border-right: none !important;
+        border-bottom: 1px solid var(--line) !important;
+    }
+
+    .number-card:last-child {
+        border-bottom: none !important;
+    }
+
+    .resume {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .resume-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    footer {
+        padding: 80px 6vw 25px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     BOOT
+========================================================= -->
+
+<div class="boot" id="boot">
+
+    <div class="boot-inner">
+
+        <div class="boot-logo">
+            BRUNO.CARVALHO
+        </div>
+
+        <div class="boot-line">
+            <span>[01]</span> INITIALIZING PORTFOLIO...
+        </div>
+
+        <div class="boot-line">
+            <span>[02]</span> LOADING EXPERIENCE...
+        </div>
+
+        <div class="boot-line">
+            <span>[03]</span> LOADING DESIGN MODULE...
+        </div>
+
+        <div class="boot-line">
+            <span>[04]</span> LOADING CODE MODULE...
+        </div>
+
+        <div class="boot-line">
+            <span>[05]</span> SYSTEM READY.
+        </div>
+
+        <div class="boot-progress"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header id="header">
+
+    <div class="logo">
+        BRUNO<span>.CARVALHO</span>
+    </div>
+
+    <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        SYSTEM ONLINE
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-image"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-meta">
+
+            <div>
+                ID // <span>BC-001</span>
+            </div>
+
+            <div>
+                BASE // <span>BRASIL</span>
+            </div>
+
+            <div>
+                STATUS // <span>ACTIVE</span>
+            </div>
+
+        </div>
+
+
+        <h1 class="hero-title">
+
+            Bruno<br>
+
+            <span class="outline">
+                Carvalho
+            </span>
+
+        </h1>
+
+
+        <div class="hero-role">
+            DIRETOR DE MARKETING
+        </div>
+
+
+        <div class="hero-social">
+
+            <a href="#" class="social" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+
+            <a href="#" class="social" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+
+            <a href="#" class="social" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-data">
+
+        <div>
+            COORD <strong>15°47' S</strong>
+        </div>
+
+        <div>
+            SYSTEM <strong>BC.2026</strong>
+        </div>
+
+        <div>
+            MODE <strong>CREATIVE</strong>
+        </div>
+
+        <div>
+            STATUS <strong>AVAILABLE</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
+
+<section class="projects" id="projetos">
+
+    <div class="container">
+
+        <div class="section-top reveal">
+
+            <div>
+
+                <div class="section-id">
+                    MODULE_01 // PROJECTS
+                </div>
+
+                <h2 class="section-title">
+                    Projetos
+                </h2>
+
+            </div>
+
+            <p class="section-description">
+                Design, tecnologia, marketing e comunicação.
+                Projetos construídos para sair da tela e
+                funcionar no mundo real.
+            </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+            <article class="project reveal">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        PROJECT_01
+                    </span>
+
+                    <span class="project-category">
+                        BRAND / WEB
+                    </span>
+
+                </div>
+
+                <h3 class="project-name">
+                    Ritmo de Rua
+                </h3>
+
+                <div class="project-footer">
+
+                    <span class="project-tech">
+                        BRANDING / DIGITAL / EVENT
+                    </span>
+
+                    <a href="#" class="deploy">
+                        DEPLOY
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="project reveal">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        PROJECT_02
+                    </span>
+
+                    <span class="project-category">
+                        EVENT
+                    </span>
+
+                </div>
+
+                <h3 class="project-name">
+                    Corre070
+                </h3>
+
+                <div class="project-footer">
+
+                    <span class="project-tech">
+                        EVENT / DIGITAL / SOCIAL
+                    </span>
+
+                    <a href="#" class="deploy">
+                        DEPLOY
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="project reveal">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        PROJECT_03
+                    </span>
+
+                    <span class="project-category">
+                        CODE
+                    </span>
+
+                </div>
+
+                <h3 class="project-name">
+                    Web Systems
+                </h3>
+
+                <div class="project-footer">
+
+                    <span class="project-tech">
+                        HTML / CSS / JS / BACKEND
+                    </span>
+
+                    <a href="#" class="deploy">
+                        DEPLOY
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="project reveal">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        PROJECT_04
+                    </span>
+
+                    <span class="project-category">
+                        MARKETING
+                    </span>
+
+                </div>
+
+                <h3 class="project-name">
+                    Campaigns
+                </h3>
+
+                <div class="project-footer">
+
+                    <span class="project-tech">
+                        STRATEGY / CONTENT / MEDIA
+                    </span>
+
+                    <a href="#" class="deploy">
+                        DEPLOY
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="project reveal">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        PROJECT_05
+                    </span>
+
+                    <span class="project-category">
+                        DESIGN
+                    </span>
+
+                </div>
+
+                <h3 class="project-name">
+                    Graphic Design
+                </h3>
+
+                <div class="project-footer">
+
+                    <span class="project-tech">
+                        BRANDING / PRINT / DIGITAL
+                    </span>
+
+                    <a href="#" class="deploy">
+                        DEPLOY
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="project reveal">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        PROJECT_06
+                    </span>
+
+                    <span class="project-category">
+                        MARKETING
+                    </span>
+
+                </div>
+
+                <h3 class="project-name">
+                    Real Estate
+                </h3>
+
+                <div class="project-footer">
+
+                    <span class="project-tech">
+                        MARKETING / SALES / MEDIA
+                    </span>
+
+                    <a href="#" class="deploy">
+                        DEPLOY
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="project reveal">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        PROJECT_07
+                    </span>
+
+                    <span class="project-category">
+                        BRAND / EVENT
+                    </span>
+
+                </div>
+
+                <h3 class="project-name">
+                    God of Run
+                </h3>
+
+                <div class="project-footer">
+
+                    <span class="project-tech">
+                        BRANDING / WEB / EVENT
+                    </span>
+
+                    <a href="#" class="deploy">
+                        DEPLOY
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="project reveal">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        PROJECT_08
+                    </span>
+
+                    <span class="project-category">
+                        DIGITAL
+                    </span>
+
+                </div>
+
+                <h3 class="project-name">
+                    Digital Portfolio
+                </h3>
+
+                <div class="project-footer">
+
+                    <span class="project-tech">
+                        FRONT-END / UI / UX
+                    </span>
+
+                    <a href="#" class="deploy">
+                        DEPLOY
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     NUMBERS
+========================================================= -->
+
+<section class="numbers" id="numeros">
+
+    <div class="container">
+
+        <div class="section-top reveal">
+
+            <div>
+
+                <div class="section-id">
+                    MODULE_02 // EXPERIENCE
+                </div>
+
+                <h2 class="section-title">
+                    Números
+                </h2>
+
+            </div>
+
+            <p class="section-description">
+                Experiência acumulada entre criatividade,
+                tecnologia, comunicação e estratégia.
+            </p>
+
+        </div>
+
+
+        <div class="numbers-grid">
+
+
+            <div class="number-card reveal">
+
+                <span class="number-index">
+                    DATA_01
+                </span>
+
+                <div>
+
+                    <div class="number-value">
+                        18
+                    </div>
+
+                    <div class="number-unit">
+                        YEARS
+                    </div>
+
+                </div>
+
+                <p class="number-description">
+                    Experiência como designer gráfico.
+                </p>
+
+            </div>
+
+
+            <div class="number-card reveal">
+
+                <span class="number-index">
+                    DATA_02
+                </span>
+
+                <div>
+
+                    <div class="number-value">
+                        06
+                    </div>
+
+                    <div class="number-unit">
+                        YEARS
+                    </div>
+
+                </div>
+
+                <p class="number-description">
+                    Experiência como programador.
+                </p>
+
+            </div>
+
+
+            <div class="number-card reveal">
+
+                <span class="number-index">
+                    DATA_03
+                </span>
+
+                <div>
+
+                    <div class="number-value">
+                        +01
+                    </div>
+
+                    <div class="number-unit">
+                        EXPERIENCE
+                    </div>
+
+                </div>
+
+                <p class="number-description">
+                    À frente do marketing de uma imobiliária.
+                </p>
+
+            </div>
+
+
+            <div class="number-card reveal">
+
+                <span class="number-index">
+                    DATA_04
+                </span>
+
+                <div>
+
+                    <div class="number-value">
+                        DF
+                    </div>
+
+                    <div class="number-unit">
+                        CAMPAIGN
+                    </div>
+
+                </div>
+
+                <p class="number-description">
+                    Diretor de Marketing de campanha no Distrito Federal.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="resume reveal">
+
+            <div class="resume-label">
+
+                DOCUMENT // CV
+
+                <strong>
+                    Currículo profissional
+                </strong>
+
+            </div>
+
+            <a
+                href="curriculo-bruno-carvalho.pdf"
+                download
+                class="resume-button"
+            >
+                DOWNLOAD CV
+                <i class="fa-solid fa-arrow-down"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-top">
+
+            <div class="footer-name">
+
+                Bruno<br>
+                Carvalho
+
+                <span>
+                    Diretor de Marketing · Gráfica · Sites · Sistemas
+                </span>
+
+            </div>
+
+
+            <div class="footer-phrase">
+
+                FINAL STATEMENT
+
+                <strong>
+                    A resposta óbvia.
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                BRUNO.CARVALHO // © <span id="year"></span>
+            </span>
+
+            <span>
+                DESIGN / CODE / STRATEGY
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   BOOT
+========================================================= */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        document
+            .getElementById("boot")
+            .classList.add("hidden");
+
+    }, 2200);
+
+});
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+
+});
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+const elements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+
+    entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("active");
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold: .12
+    }
+
+);
+
+elements.forEach(element => {
+    observer.observe(element);
+});
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* =========================================================
+   SUBTLE MOUSE PARALLAX
+========================================================= */
+
+const heroImage = document.querySelector(".hero-image");
+
+window.addEventListener("mousemove", event => {
+
+    if (window.innerWidth < 800) return;
+
+    const x =
+        (event.clientX / window.innerWidth - .5) * 8;
+
+    const y =
+        (event.clientY / window.innerHeight - .5) * 5;
+
+    heroImage.style.transform =
+        `scale(1.04) translate(${x}px, ${y}px)`;
+
+});
+
+</script>
+
+</body>
+</html>
+```
